@@ -34,6 +34,9 @@ module.exports = {
                     options: {
                         presets: [
                             "env", "react", "stage-0"
+                        ],
+                        plugins: [
+                            ["import", { "libraryName": "antd", "style": "css" }]
                         ]
                     }
                 },
@@ -48,8 +51,13 @@ module.exports = {
                             publicPath: `${outputPath  }/css`
                         }
                     },
-                    {loader: 'css-loader'},
-                    {loader: 'less-loader'}
+                    {   loader: 'css-loader'   },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            javascriptEnabled: true
+                        }
+                    }
                 ]
             },
             {

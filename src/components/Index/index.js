@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Modal, Button, List } from 'antd';
 import './index.less';
 
 const electron = require('electron');
@@ -15,42 +16,52 @@ class Index extends Component {
     super();
 
     this.win = null;
+    this.state = {
+      sourceData: []
+    };
   }
 
   componentDidMount() {
-    const ulElement = document.getElementById('content');
+    const { sourceData } = this.state;
     electron.ipcRenderer.on('message', (event, { message, data }) => {
-      console.log(message);
       const messageMap = {
-        error: '更新出错，请尝试重新更新',
-        'checking-for-update': '正在检查更新..',
+        'error': '更新出错，请尝试重新更新',
+        'checking-for-update': '正在检查更新...',
         'update-available': '发现可用更新安装包',
         'update-not-available': '未发现可用更新，当前版本已是最新版本',
-        downloadProgress: '更新安装包开始进行下载',
-        isUpdateNow: '更新安装包下载完成，可开始更新',
+        'downloadProgress': '更新安装包开始进行下载',
+        'isUpdateNow': '更新安装包下载完成，可开始更新',
       };
       if ((currentUpdateEvent && currentUpdateEvent !== message) || !currentUpdateEvent) {
         currentUpdateEvent = message;
 
-        const newElement = document.createElement('li');
-        newElement.innerHTML =
+        sourceData.push(
           `${messageMap[message] +
-          ((data !== undefined && `<div>最新版本:${  data.version  }</div>`) || '') +
+          ((data !== undefined && `【最新版本:${  data.version  }，`) || '') +
           ((data !== undefined &&
-            `<div>文件大小:${  (data.files[0].size / 1024 / 1024).toFixed(0)  }MB</div>`) ||
+            `文件大小:${  (data.files[0].size / 1024 / 1024).toFixed(0)  }MB，`) ||
             '') +
-          ((data !== undefined && `<div>版本更新时间:${  data.releaseDate  }</div>`) || '') 
-          }<br />`;
-        ulElement.appendChild(newElement);
+          ((data !== undefined && `版本更新时间:${  data.releaseDate  }】`) || '')
+          }`
+        );
+        this.setState({
+          sourceData
+        });
 
         if (message === 'update-available') {
           currentVersion = data.version;
         }
         if (message === 'isUpdateNow') {
           timer1 = setTimeout(() => {
-            if (confirm(`electron有新的版本${currentVersion}发布，是否现在更新？`)) {
-              electron.ipcRenderer.send('updateNow');
-            }
+            Modal.confirm({
+              title: 'Confirm',
+              content: `electron有新的版本${currentVersion}发布，是否现在更新？`,
+              okText: '确定',
+              cancelText: '取消',
+              onOk: () => {
+                electron.ipcRenderer.send('updateNow');
+              }
+            });
             clearTimeout(timer1);
           }, 500);
         }
@@ -78,12 +89,17 @@ class Index extends Component {
   };
 
   render() {
+    const { sourceData } = this.state;
     return (
       <div className="p-index">
-        <button type="button" onClick={this.autoUpdate}>检查更新</button>
-        <ul id="content">
-          <p>生命周期过程展示:</p>
-        </ul>
+        <Button type="primary" style={{ margin: "10px 0 10px 0" }} onClick={this.autoUpdate}>检查更新</Button>
+        <List
+          size="large"
+          header={<div>生命周期过程展示：</div>}
+          bordered
+          dataSource={sourceData}
+          renderItem={item => (<List.Item>{item}</List.Item>)}
+        />
       </div>
     );
   }

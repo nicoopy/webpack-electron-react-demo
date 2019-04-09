@@ -1,8 +1,8 @@
+const Uglify = require('uglifyjs-webpack-plugin');
 const base = require('./base');
-const uglify = require('uglifyjs-webpack-plugin');
 
 base.mode = 'development';
-base.plugins.push(new uglify({
+base.plugins.push(new Uglify({
     sourceMap: true,
     // parallel: true
 }));
