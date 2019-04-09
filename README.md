@@ -38,6 +38,7 @@ npm run pro
 
 # use electron-builder to pack the application
 # tip: please use "npm install electron-builder" to avoid the error "Unresolve node modules: react"
+# 打包时需新建一个 /build/script/installer.nsh 文件，否则electron-builder会报错
 npm run builder
 
 # preview
