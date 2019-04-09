@@ -1,5 +1,5 @@
 # webpack-electron
-Webpack4 + Electron + React + 打包(electron-builder) + 版本更新（electron-updater）
+Webpack4 + Electron + React + antd + 打包(electron-builder) + 版本更新（electron-updater）
 
 ## Dependencies
 
