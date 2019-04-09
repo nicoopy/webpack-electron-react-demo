@@ -2,3 +2,5 @@
 **/dist/
 **/server/build/
 **/dev-app-update.yml
+**/build/
+!**/build/script/installer.nsh
