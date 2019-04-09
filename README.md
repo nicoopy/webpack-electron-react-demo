@@ -44,4 +44,7 @@ npm run builder
 # make a new file dev-app-update.yml to test electron-update in "development", content is the same as lastest.yml in server/build/.
 npm start
 ```
-![example:](https://github.com/Nicoopy/webpack-electron-react-demo/raw/master/src/assets/img/example.png)
+## Example
+![example:](https://github.com/Nicoopy/webpack-electron-react-demo/raw/master/src/assets/img/example1.png)
+![example:](https://github.com/Nicoopy/webpack-electron-react-demo/raw/master/src/assets/img/example2.png)
+![example:](https://github.com/Nicoopy/webpack-electron-react-demo/raw/master/src/assets/img/example3.png)
