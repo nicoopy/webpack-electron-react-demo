@@ -50,5 +50,5 @@ npm start
 ![example:](https://github.com/Nicoopy/webpack-electron-react-demo/raw/master/src/assets/img/example2.png)
 ![example:](https://github.com/Nicoopy/webpack-electron-react-demo/raw/master/src/assets/img/example3.png)
 
-##Problem
+## Problem
 electon-update 在mac环境下，由于缺少 code signature, 会报错"could not get code signature for running application",需自行上网查找解决方案
