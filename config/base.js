@@ -1,12 +1,12 @@
 const path = require('path');
-const htmlPlugin = require('html-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('mini-css-extract-plugin');
 
 const outputPath = path.resolve(__dirname, '../dist');
 
 module.exports = {
     entry: {
-        index: path.resolve(__dirname, '../app/pages/index.js')
+        index: path.resolve(__dirname, '../src/pages/index.js')
     },
     output: {
         path: outputPath,
@@ -45,7 +45,7 @@ module.exports = {
                     {
                         loader: ExtractTextPlugin.loader,
                         options: {
-                            publicPath: outputPath + '/css'
+                            publicPath: `${outputPath  }/css`
                         }
                     },
                     {loader: 'css-loader'},
@@ -68,9 +68,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new htmlPlugin({
+        new HtmlPlugin({
             title: 'Index',
-            template: 'app/tpl.html',
+            template: 'src/tpl.html',
             chunks: ['common', 'index'],
             chunksSortMode: 'manual',
             filename: 'index.html'
