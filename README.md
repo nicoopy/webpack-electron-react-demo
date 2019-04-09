@@ -1,10 +1,9 @@
 # webpack-electron
-Webpack4 + Electron + React 脚手架
+Webpack4 + Electron + React + 打包(electron-builder) + 版本更新（electron-update）
 
 ## Dependencies
 
 ```bash
-# electron
 # electron安装3以上版本避免electron-updater报错“this.app.whenReady is not a function”
 npm install -g electron
 
@@ -13,6 +12,16 @@ npm install
 ```
 
 ## Run
+
+```bash
+# build
+npm run dev or npm run watch
+
+# start
+npm start
+```
+
+## Commands
 
 ```bash
 # development
@@ -24,13 +33,14 @@ npm run dev
 # set --watch of webpack in scripts in package.json to help online compiling.
 npm run watch
 
-# start
-npm start
-
 # production
 npm run pro
 
 # use electron-builder to pack the application
 # tip: please use "npm install electron-builder" to avoid the error "Unresolve node modules: react"
 npm run builder
+
+# preview
+# make a new file dev-app-update.yml to test electron-update in "development", content is the same as lastest.yml in server/build/.
+npm start
 ```
