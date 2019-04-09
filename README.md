@@ -15,7 +15,9 @@ npm install
 ## Run
 
 ```bash
-# build
+# development
+# use sourceMap while compiling to see error message in code in development environment.
+# set sourceMap false in uglifyjs-webpack-plugin. tip: set parallel true can help improve the speed of compiling
 npm run dev
 
 # watch
@@ -24,15 +26,6 @@ npm run watch
 
 # start
 npm start
-```
-
-## Commands
-
-```bash
-# development
-# use sourceMap while compiling to see error message in code in development environment.
-# set sourceMap false in uglifyjs-webpack-plugin. tip: set parallel true can help improve the speed of compiling
-npm run dev
 
 # production
 npm run pro
@@ -40,7 +33,4 @@ npm run pro
 # use electron-builder to pack the application
 # tip: please use "npm install electron-builder" to avoid the error "Unresolve node modules: react"
 npm run builder
-
-# preview
-npm start
 ```
