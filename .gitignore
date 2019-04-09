@@ -1,6 +1,6 @@
 **/node_modules/
-**/dist/
-**/server/build/
-**/dev-app-update.yml
-**/build/
-!**/build/script/installer.nsh
+/dist/
+/server/build/
+/dev-app-update.yml
+/build/
+!/build/script/installer.nsh
