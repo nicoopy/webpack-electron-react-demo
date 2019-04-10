@@ -6,7 +6,8 @@ const outputPath = path.resolve(__dirname, '../dist');
 
 module.exports = {
     entry: {
-        index: path.resolve(__dirname, '../src/pages/index.js')
+        index: path.resolve(__dirname, '../src/pages/index.js'),
+        anotherPage: path.resolve(__dirname, '../src/pages/anotherPage.js')
     },
     output: {
         path: outputPath,
@@ -82,6 +83,13 @@ module.exports = {
             chunks: ['common', 'index'],
             chunksSortMode: 'manual',
             filename: 'index.html'
+        }),
+        new HtmlPlugin({
+            title: 'AnotherPage',
+            template: 'src/tpl.html',
+            chunks: ['common', 'anotherPage'],
+            chunksSortMode: 'manual',
+            filename: 'anotherPage.html'
         }),
         new ExtractTextPlugin({
             filename: "css/[name].css",

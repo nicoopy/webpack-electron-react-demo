@@ -69,18 +69,18 @@ class Index extends Component {
     });
   }
 
-  handleClick = () => {
+  gotoAnothoerPage = () => {
     this.win = new remote.BrowserWindow({
       width: 400,
-      height: 300,
+      height: 300
     });
 
-    const pageUrl = path.join('file://', remote.app.getAppPath(), 'dist/login.html');
-    this.win.loadURL(pageUrl);
+  const pageUrl = path.join('file://', remote.app.getAppPath(), 'dist/anotherPage.html');
+  this.win.loadURL(pageUrl);
 
-    this.win.on('close', () => {
+  this.win.on('close', () => {
       this.win = null;
-    });
+  });
   };
 
   autoUpdate = () => {
@@ -93,6 +93,7 @@ class Index extends Component {
     return (
       <div className="p-index">
         <Button type="primary" style={{ margin: "10px 0 10px 0" }} onClick={this.autoUpdate}>检查更新</Button>
+        <Button style={{ margin: "10px 0 10px 10px" }} onClick={this.gotoAnothoerPage}>跳转页面</Button>
         <List
           size="large"
           header={<div>生命周期过程展示：</div>}
